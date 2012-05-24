@@ -1,6 +1,6 @@
 *.class
 .DS_Store
 Servers/*
-.metadata/*
-.settings/*
+.metadata
+.settings
 .classpath
