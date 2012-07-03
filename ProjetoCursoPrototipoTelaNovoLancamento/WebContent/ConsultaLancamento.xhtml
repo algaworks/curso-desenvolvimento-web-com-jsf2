@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Lançamentos</title>
+		
+		<h:outputStylesheet library="css" name="sistema.css"/>
+		<h:outputStylesheet library="css" name="consulta-lancamentos.css"/>
+	</h:head>
+	<h:body>
+
+		<h1>Lançamentos</h1>
+
+		<h:form id="frm">
+			<h:commandButton value="Novo lançamento"/>
+
+			<h:dataTable var="lancamento" value="#{consultaLancamentoBean.lancamentos}"
+				width="100%" styleClass="grid" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
+				columnClasses="tipo, pessoa, descricao, valor, vencimento, pagamento, situacao, acoes">
+				
+				<h:column>
+					<h:graphicImage value="/imagens/despesa.png"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						Pessoa
+					</f:facet>
+					
+					<h:outputText value="Escola Infantil Abelha Amarela"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						Descrição
+					</f:facet>
+					
+					<h:outputText value="Escola filhos"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						Valor
+					</f:facet>
+				
+					<h:outputText value="R$ 720,00" styleClass="despesa" />
+				</h:column>
+			
+				<h:column>
+					<f:facet name="header">
+						Vencimento
+					</f:facet>
+					
+					<h:outputText value="02/07/2012"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						Pagamento
+					</f:facet>
+					
+					<h:outputText value="02/07/2012"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						Situação
+					</f:facet>
+					
+					<h:outputText value="Pago" />
+				</h:column>
+				
+				<h:column>
+					<h:graphicImage value="/imagens/editar.png"/>
+					<h:graphicImage value="/imagens/excluir.png"/>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</h:body>
+</html>

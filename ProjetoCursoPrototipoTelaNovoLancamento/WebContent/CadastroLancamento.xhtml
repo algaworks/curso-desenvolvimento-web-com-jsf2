@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Novo lançamento</title>
+		
+		<h:outputStylesheet library="css" name="sistema.css"/>
+	</h:head>
+	<h:body>
+
+		<h1>Novo lançamento</h1>
+
+		<h:form id="frm">
+		
+			<h:commandButton value="Novo"/>
+			<h:commandButton value="Consulta"/>
+			
+			<h:panelGrid columns="2" styleClass="form-grid"
+					columnClasses="label, campo">
+			
+				<h:outputLabel value="Tipo"/>
+				<h:selectOneRadio>
+					<f:selectItem itemLabel="Receita"/>
+					<f:selectItem itemLabel="Despesa"/>
+				</h:selectOneRadio>
+				
+				<h:outputLabel value="Pessoa"/>
+				<h:selectOneMenu>
+					<f:selectItem itemValue="Escola Infantil Abelha Amarela"/>
+				</h:selectOneMenu>
+				
+				<h:outputLabel value="Descrição"/>
+				<h:inputText size="60"/>
+				
+				<h:outputLabel value="Valor"/>
+				<h:inputText size="12"/>
+				
+				<h:outputLabel value="Data de vencimento"/>
+				<h:inputText size="12"/>
+				
+				<h:outputLabel/>
+				<h:panelGroup>
+					<h:selectBooleanCheckbox/>
+					<h:outputLabel value="Conta paga"/>
+				</h:panelGroup>
+				
+				<h:outputLabel value="Data de pagamento"/>
+				<h:inputText size="12"/>
+				
+				<h:outputLabel/>
+				<h:commandButton value="Cadastrar"/>
+			</h:panelGrid>
+			
+		</h:form>
+	</h:body>
+</html>
