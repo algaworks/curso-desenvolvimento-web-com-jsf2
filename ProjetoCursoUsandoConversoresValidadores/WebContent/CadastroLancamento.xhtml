@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Novo lançamento</title>
+		
+		<h:outputStylesheet library="css" name="sistema.css"/>
+	</h:head>
+	<h:body>
+
+		<h1>Novo lançamento</h1>
+
+		<h:form id="frm">
+		
+			<h:button value="Novo" outcome="CadastroLancamento" />
+			<h:button value="Consulta" outcome="ConsultaLancamento" />
+
+			<h:messages showDetail="false" showSummary="true" 
+				styleClass="form-messages" errorClass="error"
+				infoClass="info" />
+
+			<h:panelGrid columns="2" styleClass="form-grid"
+					columnClasses="label, campo">
+			
+				<h:outputLabel value="Tipo"/>
+				<h:selectOneRadio value="#{cadastroLancamentoBean.lancamento.tipo}"
+						required="true" label="Tipo do lançamento">
+					<f:selectItems value="#{cadastroLancamentoBean.tiposLancamentos}"
+						var="tipoLancamento" itemLabel="#{tipoLancamento.descricao}"
+						itemValue="#{tipoLancamento}" />
+				</h:selectOneRadio>
+				
+				<h:outputLabel value="Pessoa"/>
+				<h:selectOneMenu>
+					<f:selectItem itemValue="Escola Infantil Abelha Amarela"/>
+				</h:selectOneMenu>
+				
+				<h:outputLabel value="Descrição"/>
+				<h:inputText size="60" value="#{cadastroLancamentoBean.lancamento.descricao}" 
+					required="true" label="Descrição" />
+				
+				<h:outputLabel value="Valor"/>
+				<h:inputText size="12" value="#{cadastroLancamentoBean.lancamento.valor}" 
+					required="true" label="Valor">
+					<f:convertNumber locale="pt_BR" maxFractionDigits="2" minFractionDigits="2" />
+					<f:validateDoubleRange minimum="0" />
+				</h:inputText>
+				
+				<h:outputLabel value="Data de vencimento" />
+				<h:inputText size="12" value="#{cadastroLancamentoBean.lancamento.dataVencimento}" 
+					required="true" label="Data de vencimento">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:inputText>
+				
+				<h:outputLabel/>
+				<h:panelGroup>
+					<h:selectBooleanCheckbox id="pagoCheckbox" value="#{cadastroLancamentoBean.lancamento.pago}"/>
+					<h:outputLabel value="Conta paga" for="pagoCheckbox"/>
+				</h:panelGroup>
+				
+				<h:outputLabel value="Data de pagamento" />
+				<h:inputText size="12" value="#{cadastroLancamentoBean.lancamento.dataPagamento}" 
+						label="Data de pagamento">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:inputText>
+				
+				<h:outputLabel/>
+				<h:commandButton value="Cadastrar" action="#{cadastroLancamentoBean.cadastrar}" />
+			</h:panelGrid>
+			
+		</h:form>
+	</h:body>
+</html>
