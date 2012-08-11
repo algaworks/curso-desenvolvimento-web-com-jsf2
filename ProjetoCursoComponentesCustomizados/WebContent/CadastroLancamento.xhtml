@@ -1,0 +1,88 @@
+<ui:composition template="/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	<ui:define name="titulo">#{cadastroLancamentoBean.editando ? 'Editando lançamento' : 'Novo lançamento'}</ui:define>
+	
+	<ui:define name="conteudo">
+		<f:metadata>
+			<f:viewParam name="codigo" value="#{cadastroLancamentoBean.lancamento}"/>
+		</f:metadata>
+		
+		<h1>#{cadastroLancamentoBean.editando ? 'Editando lançamento' : 'Novo lançamento'}</h1>
+
+		<h:form id="frm">
+		
+			<h:button value="Novo" outcome="CadastroLancamento" />
+			<h:button value="Consulta" outcome="ConsultaLancamento" />
+
+			<h:messages showDetail="false" showSummary="true" 
+				styleClass="form-messages" errorClass="error"
+				infoClass="info" />
+
+			<h:panelGrid columns="2" styleClass="form-grid"
+					columnClasses="label, campo" id="panel">
+			
+				<h:outputLabel value="Tipo"/>
+				<h:selectOneRadio value="#{cadastroLancamentoBean.lancamento.tipo}"
+						required="true" label="Tipo do lançamento">
+					<f:selectItems value="#{cadastroLancamentoBean.tiposLancamentos}"
+						var="tipoLancamento" itemLabel="#{tipoLancamento.descricao}"
+						itemValue="#{tipoLancamento}" />
+				</h:selectOneRadio>
+				
+				<h:outputLabel value="Pessoa"/>
+				<h:selectOneMenu value="#{cadastroLancamentoBean.lancamento.pessoa}"
+						required="true" label="Pessoa">
+					<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+					<f:selectItems value="#{cadastroLancamentoBean.pessoas}"
+						var="pessoa" itemValue="#{pessoa}" itemLabel="#{pessoa.nome}"/>
+				</h:selectOneMenu>
+				
+				<h:outputLabel value="Descrição"/>
+				<h:inputText size="60" value="#{cadastroLancamentoBean.lancamento.descricao}" 
+					required="true" label="Descrição" />
+				
+				<h:outputLabel value="Valor"/>
+				<h:inputText size="12" value="#{cadastroLancamentoBean.lancamento.valor}" 
+					required="true" label="Valor">
+					<f:convertNumber locale="pt_BR" maxFractionDigits="2" minFractionDigits="2" />
+					<f:validateDoubleRange minimum="0" />
+				</h:inputText>
+				
+				<h:outputLabel value="Data de vencimento" />
+				<h:inputText size="12" value="#{cadastroLancamentoBean.lancamento.dataVencimento}" 
+					required="true" label="Data de vencimento">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:inputText>
+				
+				<h:outputLabel/>
+				<h:panelGroup>
+					<h:selectBooleanCheckbox id="pagoCheckbox" value="#{cadastroLancamentoBean.lancamento.pago}"
+						immediate="true" valueChangeListener="#{cadastroLancamentoBean.lancamentoPagoModificado}" 
+						onchange="jsf.ajax.request(this, event, {execute: '@form', render: 'frm:panel'})"/>
+					<h:outputLabel value="Conta paga" for="pagoCheckbox"/>
+				</h:panelGroup>
+				
+				<h:outputLabel value="Data de pagamento" rendered="#{cadastroLancamentoBean.lancamento.pago}"/>
+				<h:inputText size="12" value="#{cadastroLancamentoBean.lancamento.dataPagamento}" 
+						label="Data de pagamento"
+						rendered="#{cadastroLancamentoBean.lancamento.pago}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+					<f:validator validatorId="com.algaworks.RequeridoCondicional"/>
+					<f:validator validatorId="com.algaworks.DataFutura"/>
+					<f:attribute name="checado" value="#{cadastroLancamentoBean.lancamento.pago}"/>
+				</h:inputText>
+				
+				<h:outputLabel/>
+				<h:commandButton value="Salvar" action="#{cadastroLancamentoBean.salvar}">
+					<f:ajax execute="@form" render="@all"/>
+				</h:commandButton>
+			</h:panelGrid>
+			
+		</h:form>
+	</ui:define>
+	
+</ui:composition>
