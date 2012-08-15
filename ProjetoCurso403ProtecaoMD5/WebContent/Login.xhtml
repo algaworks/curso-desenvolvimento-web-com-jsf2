@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>#{msg.login}</title>
+		
+		<h:outputStylesheet library="css" name="sistema.css"/>
+	</h:head>
+	<h:body>
+		<div id="content">
+			<div style="width: 240px; margin-left: auto; margin-right: auto; margin-top: 150px">
+				<h1>#{msg.login}</h1>
+		
+				<h:form id="frm">
+		
+					<h:messages showDetail="false" showSummary="true" 
+						styleClass="form-messages" errorClass="error"/>
+		
+					<h:panelGrid columns="2" styleClass="form-grid" style="padding: 10px"
+							columnClasses="label, campo" id="panel">
+					
+						<h:outputLabel value="#{msg.username}"/>
+						<h:inputText value="#{segurancaBean.usuario}" size="20"/>
+						
+						<h:outputLabel value="#{msg.password}"/>
+						<h:inputSecret value="#{segurancaBean.senha}" size="20"/>
+						
+						<h:panelGroup/>
+						<h:commandButton value="#{msg.login}" action="#{segurancaBean.logar}"/>
+					</h:panelGrid>
+				</h:form>
+			</div>
+		</div>
+	</h:body>
+</html>

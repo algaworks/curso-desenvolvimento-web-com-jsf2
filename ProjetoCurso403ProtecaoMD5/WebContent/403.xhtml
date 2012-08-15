@@ -1,0 +1,18 @@
+<ui:composition template="/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	<ui:define name="titulo">#{msg.access_denied}</ui:define>
+	
+	<ui:define name="conteudo">
+		<h1>#{msg.access_denied}</h1>
+		
+		#{msg.secured_page_and_no_privileges}
+		
+		<br/><br/>
+		<input type="button" value="#{msg.back}" onclick="history.back()"/>
+	</ui:define>
+	
+</ui:composition>
