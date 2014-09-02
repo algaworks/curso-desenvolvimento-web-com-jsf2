@@ -4,3 +4,5 @@ Servers/*
 .metadata
 .settings
 .classpath
+RemoteSystemsTempFiles/*
+*/bin/
