@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+	<h:graphicImage value="/imagens/logo.png" styleClass="logo" />
+				
+	<div class="menu">
+		<h:form>
+			<h:outputFormat value="#{msg.hello}" styleClass="logged-user">
+				<f:param value="#{facesContext.externalContext.userPrincipal.name}"/>
+			</h:outputFormat>
+		
+			<h:link outcome="Home">#{msg.home}</h:link>
+			<h:link outcome="ConsultaLancamento" rendered="#{request.isUserInRole('consulta')}">#{msg.entries}</h:link>
+			<h:link outcome="CadastroLancamento" 
+				rendered="#{request.isUserInRole('cadastro') and not request.isUserInRole('consulta')}">#{msg.entries}</h:link>
+			<h:commandLink action="#{segurancaBean.sair}">#{msg.logout}</h:commandLink>
+		</h:form>
+	</div>
+	
+</ui:composition>
