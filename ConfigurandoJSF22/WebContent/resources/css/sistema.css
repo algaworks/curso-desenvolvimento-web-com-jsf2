@@ -1,0 +1,125 @@
+body {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0px;
+}
+
+a {
+	font-weight: bold;
+	color: #003399;
+}
+
+#content h1 {
+	background: url(../imagens/tela.png) no-repeat 0px 3px;
+	padding-left: 24px;
+	font-size: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	color: #3e3e3e;
+	letter-spacing: -1px;
+}
+
+.grid {
+	border: 1px solid #666666;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+.grid td, .grid th {
+	padding: 3px;
+}
+
+.grid .cabecalho {
+	text-align: center;
+	font-weight: bold;
+	color: white;
+	background-color: #666666;
+}
+
+.grid .cor-sim {
+	background-color: #dbdbdb;
+}
+
+.grid .cor-nao {
+	background-color: #e6e6e6;
+}
+
+.form-grid {
+	background-color: #f2f2f2;
+	border-radius: 8px;
+	border: 1px solid #cccccc;
+	margin-top: 8px;
+}
+
+.form-grid .label {
+	font-weight: bold;
+	text-align: right;
+	padding: 0px 5px;
+}
+
+.form-grid .campo {
+	padding-right: 5px;
+}
+
+ul.form-messages {
+	padding-left: 20px;
+}
+
+.form-messages .error {
+	color: #e81f1f;
+}
+
+.form-messages .info {
+	color: #156b2a;
+}
+
+#header, #content, #footer {
+	padding: 8px;
+}
+
+#header {
+	height: 43px;
+	background-color: #e2e2e2;
+	box-shadow: 0px 2px 2px #ccc;
+}
+
+#header h1 {
+	padding: 0px;
+	margin: 0px;
+}
+
+.logo {
+	float: left;
+}
+
+.logged-user {
+	margin-right: 10px;
+}
+
+.menu {
+	margin-top: 15px;
+	float: right;
+}
+
+.menu a {
+	margin-left: 4px;
+	padding: 8px;
+	border-radius: 6px;
+	background-color: #4d4d4d;
+	color: #ffffff;
+	text-decoration: none;
+	text-shadow: 1px 1px 2px #000000; 
+}
+
+.menu a:hover {
+	background-color: #3c3c3c;
+	color: #eeeeee;
+	box-shadow: 0px 0px 5px #a6a6a6;
+}
+
+#footer {
+	font-size: 10px;
+	font-color: #9b9b9b;
+	margin-top: 10px;
+	border-top: 1px solid #cfcfcf;
+}
