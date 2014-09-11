@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+<head jsf:id="head">
+	<title>Elementos Pass-through</title>
+</head>
+<body jsf:id="body">
+
+	<form jsf:id="frm" jsf:prependId="false">
+	
+		<input type="text" placeholder="Digite seu nome" jsf:value="#{olaBean.nome}" />
+		
+		<input type="color" jsf:value="#{olaBean.cor}" />
+		
+		<div style="height: 100px; background-color: #{olaBean.cor}" jsf:id="painel">
+			Olá #{olaBean.nome}!
+		</div>
+	
+		<button jsf:action="#{olaBean.exibir}">
+			<f:ajax execute="@form" render="painel" />
+			Exibir
+		</button>
+	
+	</form>
+
+</body>
+</html>
