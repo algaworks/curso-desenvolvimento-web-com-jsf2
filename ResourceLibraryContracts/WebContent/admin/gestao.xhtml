@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/template.xhtml">
+	
+	<ui:define name="corpo">
+	
+		<h:form>
+			
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Usuário" />
+				<h:inputText />
+				
+				<h:outputLabel value="Senha" />
+				<h:inputText />
+				
+				<h:outputLabel/>
+				<h:commandButton value="Alterar" />
+			</h:panelGrid>
+			
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>

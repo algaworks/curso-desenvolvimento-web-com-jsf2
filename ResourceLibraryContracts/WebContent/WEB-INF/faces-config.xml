@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
+
+	<application>
+		<resource-library-contracts>
+			<contract-mapping>
+				<url-pattern>/admin/*</url-pattern>
+				<contracts>admin</contracts>
+			</contract-mapping>
+			<contract-mapping>
+				<url-pattern>*</url-pattern>
+				<contracts>usuario</contracts>
+			</contract-mapping>
+		</resource-library-contracts>
+	
+	</application>
+
+</faces-config>
