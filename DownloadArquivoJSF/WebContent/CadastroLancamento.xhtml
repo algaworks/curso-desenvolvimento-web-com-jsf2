@@ -1,0 +1,96 @@
+<ui:composition template="/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+	<f:metadata>
+		<f:viewParam name="codigo" value="#{cadastroLancamentoBean.lancamento}"/>
+		<f:viewAction action="#{cadastroLancamentoBean.init}" />
+	</f:metadata>
+	
+	<ui:define name="titulo">#{cadastroLancamentoBean.editando ? msg.editing_entry : msg.new_entry}</ui:define>
+	
+	<ui:define name="conteudo">
+		<h1>#{cadastroLancamentoBean.editando ? msg.editing_entry : msg.new_entry}</h1>
+
+		<h:form id="frm" enctype="multipart/form-data">
+		
+			<h:button value="#{msg.new_msg}" outcome="CadastroLancamento" />
+			<h:button value="#{msg.search}" outcome="ConsultaLancamento" 
+				rendered="#{request.isUserInRole('consulta')}"/>
+
+			<h:messages showDetail="false" showSummary="true" 
+				styleClass="form-messages" errorClass="error"
+				infoClass="info" />
+
+			<h:panelGrid columns="2" styleClass="form-grid"
+					columnClasses="label, campo" id="panel">
+			
+				<h:outputLabel value="#{msg.type}"/>
+				<h:selectOneRadio value="#{cadastroLancamentoBean.lancamento.tipo}"
+						required="true" label="#{msg.entry_type}">
+					<f:selectItems value="#{cadastroLancamentoBean.tiposLancamentos}"
+						var="tipoLancamento" itemLabel="#{msg[tipoLancamento.descricao]}"
+						itemValue="#{tipoLancamento}" />
+				</h:selectOneRadio>
+				
+				<h:outputLabel value="#{msg.person}"/>
+				<h:selectOneMenu value="#{cadastroLancamentoBean.lancamento.pessoa}"
+						required="true" label="#{msg.person}">
+					<f:selectItem itemLabel="#{msg.select}" noSelectionOption="true" />
+					<f:selectItems value="#{cadastroLancamentoBean.pessoas}"
+						var="pessoa" itemValue="#{pessoa}" itemLabel="#{pessoa.nome}"/>
+				</h:selectOneMenu>
+				
+				<h:outputLabel value="#{msg.description}"/>
+				<h:inputText size="60" value="#{cadastroLancamentoBean.lancamento.descricao}" 
+					required="true" label="#{msg.description}" />
+				
+				<h:outputLabel value="#{msg.amount}"/>
+				<h:inputText size="12" value="#{cadastroLancamentoBean.lancamento.valor}" 
+					required="true" label="#{msg.amount}">
+					<f:convertNumber locale="pt_BR" maxFractionDigits="2" minFractionDigits="2" />
+					<f:validateDoubleRange minimum="0" />
+				</h:inputText>
+				
+				<h:outputLabel value="#{msg.due_date}" />
+				<h:inputText size="12" value="#{cadastroLancamentoBean.lancamento.dataVencimento}" 
+					required="true" label="#{msg.due_date}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:inputText>
+				
+				<h:outputLabel/>
+				<h:panelGroup>
+					<h:selectBooleanCheckbox id="pagoCheckbox" value="#{cadastroLancamentoBean.lancamento.pago}"
+						immediate="true" valueChangeListener="#{cadastroLancamentoBean.lancamentoPagoModificado}" 
+						onchange="jsf.ajax.request(this, event, {execute: '@form', render: 'frm:panel'})"/>
+					<h:outputLabel value="#{msg.paid_bill}" for="pagoCheckbox"/>
+				</h:panelGroup>
+				
+				<h:outputLabel value="#{msg.payment_date}" rendered="#{cadastroLancamentoBean.lancamento.pago}"/>
+				<h:inputText size="12" value="#{cadastroLancamentoBean.lancamento.dataPagamento}" 
+						label="#{msg.payment_date}"
+						rendered="#{cadastroLancamentoBean.lancamento.pago}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+					<f:validator validatorId="com.algaworks.RequeridoCondicional"/>
+					<f:validator validatorId="com.algaworks.DataFutura"/>
+					<f:attribute name="checado" value="#{cadastroLancamentoBean.lancamento.pago}"/>
+				</h:inputText>
+				
+				<h:outputLabel value="#{msg.payment_receipt}" rendered="#{cadastroLancamentoBean.lancamento.pago}"/>
+				<h:inputFile label="#{msg.payment_receipt}" value="#{cadastroLancamentoBean.arquivoComprovante}" 
+					rendered="#{cadastroLancamentoBean.lancamento.pago}"
+					validator="com.algaworks.Comprovante" />
+				
+				<h:outputLabel/>
+				<h:commandButton value="#{msg.save}" action="#{cadastroLancamentoBean.salvar}"
+						actionListener="#{cadastroLancamentoBean.uploadComprovante}">
+					<f:ajax execute="@form" render="@all"/>
+				</h:commandButton>
+			</h:panelGrid>
+			
+		</h:form>
+	</ui:define>
+	
+</ui:composition>
