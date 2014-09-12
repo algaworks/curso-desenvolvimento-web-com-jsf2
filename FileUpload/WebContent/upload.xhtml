@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+	<meta charset="UTF-8" />
+</h:head>
+<h:body>
+
+	<h:form enctype="multipart/form-data">
+	
+		<h:messages />
+
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Descrição" />
+			<h:inputText required="true" requiredMessage="Descrição é obrigatória."
+				value="#{uploadBean.descricao}" />
+			
+			<h:outputLabel value="Arquivo" />
+			<h:inputFile required="true" requiredMessage="Arquivo é obrigatório." 
+				value="#{uploadBean.arquivo}" />
+			
+			<h:outputLabel/>
+			<h:commandButton value="Enviar" action="#{uploadBean.enviar}" />
+		</h:panelGrid>
+		
+	</h:form>
+
+</h:body>
+</html>
