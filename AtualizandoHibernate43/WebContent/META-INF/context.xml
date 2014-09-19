@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Realm className="org.apache.catalina.realm.JDBCRealm"
+		driverName="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost/cursojsf"
+		connectionName="root" connectionPassword="algaworks"
+		userTable="usuario" userNameCol="nome_usuario"
+		userCredCol="senha" userRoleTable="permissao_usuario"
+		roleNameCol="nome_permissao" digest="MD5" />
+</Context>
